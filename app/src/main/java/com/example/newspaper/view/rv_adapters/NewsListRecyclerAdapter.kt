@@ -8,22 +8,28 @@ import com.example.newspaper.data.Article
 import com.example.newspaper.view.rv_viewholders.NewsViewHolder
 
 class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    //Здесь у нас хранится список элементов для RV
     private val items = mutableListOf<Article>()
 
+    //Этот метод нужно переопределить на возврат количества элементов в списке RV
+    override fun getItemCount() = items.size
+
+    //В этом методе мы привязываем наш ViewHolder и передаем туда "надутую" верстку нашего фильма
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return NewsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false))
     }
 
+    //В этом методе будет привязка полей из объекта Film к View из film_item.xml
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is NewsViewHolder -> {
+                //Вызываем метод bind(), который мы создали, и передаем туда объект
+                //из нашей базы данных с указанием позиции
                 holder.bind(items[position])
             }
         }
     }
 
-    override fun getItemCount() = items.size
 
     fun addItems(list: List<Article>) {
         items.clear()
