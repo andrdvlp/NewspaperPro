@@ -2,13 +2,12 @@ package com.example.newspaper.view.rv_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
 import com.example.newspaper.data.Article
 import com.example.newspaper.view.rv_viewholders.NewsViewHolder
 
-class NewsListRecyclerAdapter(private val clickListener: AdapterView.OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<Article>()
 

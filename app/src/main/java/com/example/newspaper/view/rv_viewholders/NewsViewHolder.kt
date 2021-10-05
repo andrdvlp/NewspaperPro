@@ -4,14 +4,13 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.data.Article
 import com.example.newspaper.databinding.NewsItemBinding
+import kotlinx.android.synthetic.main.news_item.view.*
 
 class NewsViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    private val newsItemBinding = NewsItemBinding.bind(itemView)
-
-    private val title = newsItemBinding.title
-    private val description = newsItemBinding.description
-    private val photo = newsItemBinding.photo
+    private val title = itemView.title
+    private val description = itemView.description
+    private val photo = itemView.photo
 
     fun bind(article: Article) {
 
