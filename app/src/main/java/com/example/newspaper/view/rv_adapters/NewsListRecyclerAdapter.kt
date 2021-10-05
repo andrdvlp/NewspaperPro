@@ -32,7 +32,7 @@ class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
     }
 
     interface OnItemClickListener {
-        fun click(film: Article)
+        fun click(article: Article)
     }
 
 }

@@ -9,16 +9,16 @@ import com.example.newspaper.view.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+//    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Инициализируем объект
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        //Передаем его в метод
-        setContentView(binding.root)
+//        //Инициализируем объект
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        //Передаем его в метод
+//        setContentView(binding.root)
 
         //    initNavigation()
 
