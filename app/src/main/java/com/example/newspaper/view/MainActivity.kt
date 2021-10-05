@@ -3,6 +3,7 @@ package com.example.newspaper.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.newspaper.R
+import com.example.newspaper.data.Article
 import com.example.newspaper.databinding.ActivityMainBinding
 import com.example.newspaper.view.fragments.HomeFragment
 
@@ -38,4 +39,5 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //    }
+
 }
