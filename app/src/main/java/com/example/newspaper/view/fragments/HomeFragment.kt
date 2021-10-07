@@ -7,32 +7,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
 import com.example.newspaper.data.Article
 import com.example.newspaper.databinding.FragmentHomeBinding
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
+import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
+import com.example.newspaper.viewmodel.HomeFragmentViewModel
 
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
 
     private lateinit var newsAdapter: NewsListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
+    private var newsDataBase = listOf<Article>()
 
-    val newsDataBase = listOf(
-        Article("kjhkjh", "kjhkjhkjhk", R.drawable.img19_1920x1200),
-        Article("kjhkjh", "kjhkjhkjhk", R.drawable.img19_1920x1200),
-        Article("kjhkdsdfjh", "kjhkjsfhkjhk", R.drawable.img19_1920x1200),
-        Article("kjhkdsdfjh", "kjhkjsfhkjhk", R.drawable.img19_1920x1200),
-        Article("kjhksdfsdjh", "kjhkjhasdkjhk", R.drawable.img19_1920x1200),
-        Article("kjhksdfsdjh", "kjhkjhasdkjhk", R.drawable.img19_1920x1200),
-        Article("kjhkjh", "kjhkjhkjhksa", R.drawable.img19_1920x1200),
-        Article("kjhkjh", "kjhkjhkjhksa", R.drawable.img19_1920x1200),
-        Article("kjhfhkjh", "kjhkjhkjhk", R.drawable.img19_1920x1200),
-        Article("kjhfhkjh", "kjhkjhkjhk", R.drawable.img19_1920x1200),
-        Article("kjhkfghfjh", "kjhkjhfhfgkjhk", R.drawable.img19_1920x1200),
-        Article("kjhkfghfjh", "kjhkjhfhfgkjhk", R.drawable.img19_1920x1200)
-    )
+        //Используем backing field
+        set(value) {
+            //Если придет такое же значение то мы выходим из метода
+            if (field == value) return
+            //Если прило другое значение, то кладем его в переменную
+            field = value
+            //Обновляем RV адаптер
+            newsAdapter.addItems(field)
+        }
+
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +50,10 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyckler()
+
+        var list = viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<Article>> {
+            newsDataBase = it
+        })
     }
 
     private fun initRecyckler() {
@@ -53,12 +61,13 @@ class HomeFragment: Fragment() {
         binding.mainRecycler.apply {
             //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
             //оставим его пока пустым, он нам понадобится во второй части задания
-            newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener{
+            newsAdapter =
+                NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener {
 
-                override fun click(article: Article) {
+                    override fun click(article: Article) {
 
-                }
-            })
+                    }
+                })
             //Присваиваем адаптер
             adapter = newsAdapter
             //Присвои layoutmanager
@@ -68,20 +77,6 @@ class HomeFragment: Fragment() {
             addItemDecoration(decorator)
         }
 //Кладем нашу БД в RV
-        newsAdapter.addItems(newsDataBase)
-    }
-
-
-}
-class TopSpacingItemDecoration (private val paddingInDp: Int): RecyclerView.ItemDecoration() {
-    private val Int.convertPx: Int
-        get() = (this * Resources.getSystem().displayMetrics.density).toInt()
-
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        super.getItemOffsets(outRect, view, parent, state)
-        outRect.top = paddingInDp.convertPx
-        outRect.right = paddingInDp.convertPx
-        outRect.left = paddingInDp.convertPx
-
+  //      newsAdapter.addItems(newsDataBase)
     }
 }
