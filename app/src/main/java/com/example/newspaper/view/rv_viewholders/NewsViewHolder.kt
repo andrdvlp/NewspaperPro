@@ -6,7 +6,7 @@ import com.example.newspaper.data.Article
 import com.example.newspaper.databinding.NewsItemBinding
 import kotlinx.android.synthetic.main.news_item.view.*
 
-class NewsViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView){
+class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     private val title = itemView.title
     private val description = itemView.description
