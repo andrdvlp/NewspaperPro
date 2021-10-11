@@ -2,6 +2,7 @@ package com.example.newspaper
 
 import android.app.Application
 import com.example.newspaper.di.AppComponent
+import com.example.newspaper.di.DaggerAppComponent
 
 class App : Application() {
 
