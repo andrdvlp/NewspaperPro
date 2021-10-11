@@ -22,6 +22,11 @@ class HomeFragment : Fragment() {
 
     private lateinit var newsAdapter: NewsListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
+
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
+    }
+
     private var newsDataBase = listOf<Article>()
 
         //Используем backing field
@@ -34,14 +39,10 @@ class HomeFragment : Fragment() {
             newsAdapter.addItems(field)
         }
 
-    private val viewModel by lazy {
-        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
 
         initRecyckler()
 
-        var list = viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<Article>> {
+        viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<Article>> {
             newsDataBase = it
         })
     }
@@ -61,13 +62,12 @@ class HomeFragment : Fragment() {
         binding.mainRecycler.apply {
             //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
             //оставим его пока пустым, он нам понадобится во второй части задания
-            newsAdapter =
-                NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener {
+            newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener{
 
-                    override fun click(article: Article) {
+                override fun click(article: Article) {
 
-                    }
-                })
+                }
+            })
             //Присваиваем адаптер
             adapter = newsAdapter
             //Присвои layoutmanager
@@ -76,7 +76,5 @@ class HomeFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(10)
             addItemDecoration(decorator)
         }
-//Кладем нашу БД в RV
-  //      newsAdapter.addItems(newsDataBase)
     }
 }

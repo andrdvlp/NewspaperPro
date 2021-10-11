@@ -1,10 +1,10 @@
 package com.example.newspaper.interactor
 
-import android.telecom.Call
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
 import com.example.newspaper.data.NewsData
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
