@@ -3,8 +3,9 @@ package com.example.newspaper.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newspaper.App
-import com.example.newspaper.data.Article
+import com.example.newspaper.data.Entity.Article
 import com.example.newspaper.interactor.Interactor
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 
@@ -23,6 +24,9 @@ class HomeFragmentViewModel : ViewModel() {
             }
 
             override fun onFailure() {
+                Executors.newSingleThreadExecutor().execute {
+                    newsListLiveData.postValue(interactor.getNewsFromDB())
+                }
             }
         })
     }

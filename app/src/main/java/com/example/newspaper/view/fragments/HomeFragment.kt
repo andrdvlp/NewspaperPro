@@ -1,7 +1,5 @@
 package com.example.newspaper.view.fragments
 
-import android.content.res.Resources
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.newspaper.R
-import com.example.newspaper.data.Article
+import com.example.newspaper.data.Entity.Article
 import com.example.newspaper.databinding.FragmentHomeBinding
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration

@@ -1,5 +1,6 @@
 package com.example.newspaper.di.modules
 
+import android.content.Context
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
 import com.example.newspaper.interactor.Interactor
@@ -8,7 +9,10 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DomainModule {
+class DomainModule(val context: Context) {
+
+    @Provides
+    fun provideContext() = context
 
     @Provides
     @Singleton

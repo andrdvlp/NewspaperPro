@@ -1,5 +1,6 @@
 package com.example.newspaper.interactor
 
+import com.example.newspaper.data.Entity.Article
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
 import com.example.newspaper.data.NewsData
@@ -25,4 +26,6 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
             }
         })
     }
+
+    fun getNewsFromDB(): List<Article> = repo.getAllFromDB()
 }
