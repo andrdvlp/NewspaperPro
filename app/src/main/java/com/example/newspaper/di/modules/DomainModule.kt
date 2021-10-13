@@ -9,10 +9,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DomainModule(val context: Context) {
-
-    @Provides
-    fun provideContext() = context
+class DomainModule {
 
     @Provides
     @Singleton

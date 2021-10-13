@@ -1,4 +1,4 @@
-package com.example.newspaper.data
+package com.example.newspaper.data.Entity
 
 import com.example.newspaper.data.Entity.Article
 

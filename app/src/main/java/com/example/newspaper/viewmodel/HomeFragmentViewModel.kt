@@ -17,7 +17,10 @@ class HomeFragmentViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
+        getFilms()
+    }
 
+    fun getFilms() {
         interactor.getNewsFromApi(object : ApiCallback {
             override fun onSuccess(article: List<Article>) {
                 newsListLiveData.postValue(article)

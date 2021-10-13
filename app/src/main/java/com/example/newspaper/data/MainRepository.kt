@@ -7,9 +7,9 @@ import java.util.concurrent.Executors
 
 class MainRepository(private val newsDao: NewsDao) {
 
-    fun putToDb(news: List<Article>) {
+    fun putToDb(article: List<Article>) {
         Executors.newSingleThreadExecutor().execute {
-            newsDao.insertAll(news)
+            newsDao.insertAll(article)
         }
     }
 
