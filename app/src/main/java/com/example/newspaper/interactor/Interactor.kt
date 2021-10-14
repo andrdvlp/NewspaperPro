@@ -24,6 +24,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
             }
 
             override fun onFailure(call: Call<NewsData>, t: Throwable) {
+                println("VVV onFailure")
                 //В случае провала вызываем другой метод коллбека
                 callback.onFailure()
             }
