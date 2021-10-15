@@ -1,7 +1,6 @@
 package com.example.newspaper.data
 
 import com.example.newspaper.data.Entity.Article
-import com.example.newspaper.data.Entity.Source
 import com.example.newspaper.data.Entity.dao.NewsDao
 import java.util.concurrent.Executors
 

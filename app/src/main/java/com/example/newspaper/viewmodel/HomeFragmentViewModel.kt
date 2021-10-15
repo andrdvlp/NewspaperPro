@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 
 class HomeFragmentViewModel : ViewModel() {
+
     val newsListLiveData = MutableLiveData<List<Article>>()
     //Инициализируем интерактор
     @Inject

@@ -7,6 +7,7 @@ import com.example.newspaper.di.modules.DatabaseModule
 import com.example.newspaper.di.modules.DomainModule
 import com.example.newspaper.di.modules.RemoteModule
 
+
 class App : Application() {
 
     lateinit var dagger: AppComponent

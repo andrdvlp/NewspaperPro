@@ -1,6 +1,6 @@
 package com.example.newspaper.di.modules
 
-import androidx.viewbinding.BuildConfig
+import com.example.newspaper.BuildConfig
 import com.example.newspaper.data.ApiConstants
 import com.example.newspaper.data.NewsApi
 import dagger.Module

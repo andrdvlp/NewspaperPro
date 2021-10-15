@@ -1,9 +1,9 @@
 package com.example.newspaper.interactor
 
 import com.example.newspaper.data.Entity.Article
+import com.example.newspaper.data.Entity.NewsData
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
-import com.example.newspaper.data.Entity.NewsData
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +20,9 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                 list?.forEach {
                     repo.putToDb(list)
                 }
-                list?.let { callback.onSuccess(it) }
+                if (list != null) {
+                    callback.onSuccess(list)
+                }
             }
 
             override fun onFailure(call: Call<NewsData>, t: Throwable) {
