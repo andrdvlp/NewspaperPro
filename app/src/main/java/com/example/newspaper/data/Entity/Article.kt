@@ -13,10 +13,11 @@ data class Article(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "publishedAt") val publishedAt: String,
     @Embedded val source: @RawValue Source,
-    @ColumnInfo(name = "picture_path") val urlToImage: String
+    @ColumnInfo(name = "picture_path") val urlToImage: String,
+    @ColumnInfo (name = "description") val description: String,
+    var isInFavorites: Boolean = false
     //val author: String,
     //val content: String,
-    //val description: String,
 //    val publishedAt: String,
  //   val source: Source,
  //   val title: String,

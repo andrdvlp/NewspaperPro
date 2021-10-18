@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newspaper.data.Entity.Article
 import com.example.newspaper.databinding.FragmentHomeBinding
+import com.example.newspaper.view.MainActivity
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
@@ -63,7 +64,7 @@ class HomeFragment : Fragment() {
             newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener{
 
                 override fun click(article: Article) {
-
+                    (requireActivity() as MainActivity).launchDetailsFragment(article)
                 }
             })
             //Присваиваем адаптер
