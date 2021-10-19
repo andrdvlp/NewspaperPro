@@ -15,7 +15,7 @@ data class Article(
     @Embedded val source: @RawValue Source,
     @ColumnInfo(name = "picture_path") val urlToImage: String,
     @ColumnInfo (name = "description") val description: String,
-    var isInFavorites: Boolean = false
+    var isInMarked: Boolean = false
     //val author: String,
     //val content: String,
 //    val publishedAt: String,

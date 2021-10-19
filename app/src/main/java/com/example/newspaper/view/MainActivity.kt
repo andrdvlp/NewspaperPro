@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import com.example.newspaper.R
 import com.example.newspaper.data.Entity.Article
 import com.example.newspaper.databinding.ActivityMainBinding
+import com.example.newspaper.view.fragments.BookmarksFragment
 import com.example.newspaper.view.fragments.DetailsFragment
 import com.example.newspaper.view.fragments.HomeFragment
+import com.example.newspaper.view.fragments.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         //Передаем его в метод
         setContentView(binding.root)
 
-//            initNavigation()
+            initNavigation()
 
         //Зупускаем фрагмент при старте
         supportFragmentManager
@@ -49,32 +51,44 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-//    private fun initNavigation() {
-//        binding.bottomNavigation.setOnNavigationItemSelectedListener {
-//
-//            when (it.itemId) {
-//                R.id.home -> {
-//                    val tag = "home"
-//                    val fragment = checkFragmentExistence(tag)
-//                    //В первом параметре, если фрагмент не найден и метод вернул null, то с помощью
-//                    //элвиса мы вызываем создание нвого фрагмента
-//                    changeFragment( fragment?: HomeFragment(), tag)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
+    private fun initNavigation() {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
 
-//    private fun checkFragmentExistence(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
-//
-//    private fun changeFragment (fragment: Fragment, tag: String) {
-//            supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.fragment_placeholder, fragment, tag)
-//                .addToBackStack(null)
-//                .commit()
-//
-//    }
+            when (it.itemId) {
+                R.id.home -> {
+                    val tag = "home"
+                    val fragment = checkFragmentExistence(tag)
+                    //В первом параметре, если фрагмент не найден и метод вернул null, то с помощью
+                    //элвиса мы вызываем создание нвого фрагмента
+                    changeFragment( fragment?: HomeFragment(), tag)
+                    true
+                }
+                R.id.marked -> {
+                    val tag = "marked"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment(fragment?: BookmarksFragment(), tag)
+                    true
+                }
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment( fragment?: SettingsFragment(), tag)
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun checkFragmentExistence(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
+
+    private fun changeFragment (fragment: Fragment, tag: String) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_placeholder, fragment, tag)
+                .addToBackStack(null)
+                .commit()
+
+    }
 
 }

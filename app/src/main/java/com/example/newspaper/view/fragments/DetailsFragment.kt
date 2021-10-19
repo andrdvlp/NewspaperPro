@@ -51,7 +51,7 @@ class DetailsFragment : Fragment() {
         binding.detailsDescription.text = article.description
 
         binding.detailsFabMarked.setImageResource(
-            if (article.isInFavorites) R.drawable.ic_baseline_bookmarks_24
+            if (article.isInMarked) R.drawable.ic_baseline_bookmarks_24
             else R.drawable.ic_baseline_bookmarks_24
         )
     }
