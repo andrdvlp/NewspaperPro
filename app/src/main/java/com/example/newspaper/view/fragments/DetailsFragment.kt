@@ -41,7 +41,7 @@ class DetailsFragment : Fragment() {
     }
 
     fun setNewsDetails() {
-        article = arguments?.get("artitcle") as Article
+        article = arguments?.get("article") as Article
 
         binding.detailsToolbar.title = article.title
         Glide.with(this)
