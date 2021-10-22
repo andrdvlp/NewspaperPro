@@ -21,7 +21,7 @@ class HomeFragmentViewModel : ViewModel() {
     init {
         App.instance.dagger.inject(this)
         getNews()
-        bookmarksListData = interactor.getNewsFromBookmarks()
+        bookmarksListData.postValue(interactor.getNewsFromBookmarks())
     }
 
     fun getNews() {
@@ -36,6 +36,10 @@ class HomeFragmentViewModel : ViewModel() {
                 }
             }
         })
+    }
+
+    fun insertToBookmarks (article: Article) {
+        Interactor.insertToBookmarks(article)
     }
 
     interface ApiCallback {

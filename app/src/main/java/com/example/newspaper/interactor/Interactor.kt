@@ -34,6 +34,10 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
         })
     }
 
+    fun insertToBookmarks(articleBookmarks: ArticleBookmarks) {
+        repo.putToBookmarks(listOf(articleBookmarks))
+    }
+
     fun getNewsFromDB(): List<Article> = repo.getAllFromDB()
     fun getNewsFromBookmarks(): List<ArticleBookmarks> = repo.getAllFromBookmarks()
 }

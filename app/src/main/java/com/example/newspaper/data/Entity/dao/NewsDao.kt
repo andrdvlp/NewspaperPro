@@ -9,15 +9,20 @@ import com.example.newspaper.data.Entity.ArticleBookmarks
 
 @Dao
 interface NewsDao {
+    //Cashed
     @Query("SELECT*FROM cashed_news")
     fun getCashedNews(): List<Article>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: List<Article>)
 
-    @Query("SELECT*FROM cashed_news")
+    //Bookmarks
+    @Query("SELECT*FROM marked_news")
     fun getMarkedNews(): List<ArticleBookmarks>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMarked(list: List<ArticleBookmarks>)
+    fun insertMarked(articleBookmarks: ArticleBookmarks)
+
+    @Query("DELETE FROM marked_news WHERE id = :id")
+    fun deleteFavoriteFilm(id: Int)
 }
