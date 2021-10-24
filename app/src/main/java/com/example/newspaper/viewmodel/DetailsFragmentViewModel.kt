@@ -11,32 +11,13 @@ import java.util.concurrent.Executors
 import javax.inject.Inject
 
 
-class HomeFragmentViewModel : ViewModel() {
-
-    val newsListLiveData = MutableLiveData<List<Article>>()
-    var bookmarksListData = MutableLiveData<List<ArticleBookmark>>()
+class DetailsFragmentViewModel : ViewModel() {
     //Инициализируем интерактор
     @Inject
     lateinit var interactor: Interactor
 
     init {
         App.instance.dagger.inject(this)
-        getNews()
-        //bookmarksListData.postValue(interactor.getNewsFromBookmarks())
-    }
-
-    fun getNews() {
-        interactor.getNewsFromApi(object : ApiCallback {
-            override fun onSuccess(article: List<Article>) {
-                newsListLiveData.postValue(article)
-            }
-
-            override fun onFailure() {
-                Executors.newSingleThreadExecutor().execute {
-                    newsListLiveData.postValue(interactor.getNewsFromDB())
-                }
-            }
-        })
     }
 
     fun insertToBookmarks (article: Article) {

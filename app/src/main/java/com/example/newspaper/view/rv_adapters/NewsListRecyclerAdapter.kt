@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newspaper.R
-import com.example.newspaper.data.Entity.Article
+import com.example.newspaper.data.entity.Article
 import com.example.newspaper.view.rv_viewholders.NewsViewHolder
 
 class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

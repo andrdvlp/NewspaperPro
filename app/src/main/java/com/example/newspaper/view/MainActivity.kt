@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.newspaper.R
-import com.example.newspaper.data.Entity.Article
+import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.ActivityMainBinding
 import com.example.newspaper.view.fragments.BookmarksFragment
 import com.example.newspaper.view.fragments.DetailsFragment

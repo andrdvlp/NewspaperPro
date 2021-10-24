@@ -1,4 +1,4 @@
-package com.example.newspaper.data.Entity
+package com.example.newspaper.data.entity
 
 import android.os.Parcelable
 import androidx.room.*
@@ -15,12 +15,5 @@ data class Article(
     @Embedded val source: @RawValue Source,
     @ColumnInfo(name = "picture_path") val urlToImage: String,
     @ColumnInfo (name = "description") val description: String,
-    var isInMarked: Boolean = false
-    //val author: String,
-    //val content: String,
-//    val publishedAt: String,
- //   val source: Source,
- //   val title: String,
-    //val url: String,
-  //  val urlToImage: String
+     val isMarked: Boolean = false
 ) : Parcelable

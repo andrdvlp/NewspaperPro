@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newspaper.data.Entity.Article
+import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.FragmentBookmarksBinding
 import com.example.newspaper.view.MainActivity
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter

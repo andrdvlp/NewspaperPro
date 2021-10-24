@@ -1,21 +1,26 @@
 package com.example.newspaper.view.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.newspaper.R
-import com.example.newspaper.data.ApiConstants
-import com.example.newspaper.data.Entity.Article
+import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.FragmentDetailsBinding
+import com.example.newspaper.viewmodel.DetailsFragmentViewModel
+import com.example.newspaper.viewmodel.HomeFragmentViewModel
 
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var article: Article
+
+    private val viewModel by lazy {
+        ViewModelProvider.NewInstanceFactory().create(DetailsFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +37,7 @@ class DetailsFragment : Fragment() {
         setNewsDetails()
 
         binding.detailsFabMarked.setOnClickListener {
-
+            viewModel.insertToBookmarks(article)
         }
 
         binding.detailsFab.setOnClickListener {
@@ -51,7 +56,7 @@ class DetailsFragment : Fragment() {
         binding.detailsDescription.text = article.description
 
         binding.detailsFabMarked.setImageResource(
-            if (article.isInMarked) R.drawable.ic_baseline_bookmark_24
+            if (article.isMarked) R.drawable.ic_baseline_bookmark_24
             else R.drawable.ic_baseline_bookmark_border_24
         )
     }

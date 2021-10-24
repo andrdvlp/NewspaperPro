@@ -3,7 +3,7 @@ package com.example.newspaper.view.rv_viewholders
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.newspaper.data.Entity.Article
+import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.NewsItemBinding
 
 class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

@@ -1,8 +1,8 @@
 package com.example.newspaper.interactor
 
-import com.example.newspaper.data.Entity.Article
-import com.example.newspaper.data.Entity.ArticleBookmarks
-import com.example.newspaper.data.Entity.NewsData
+import com.example.newspaper.data.entity.Article
+import com.example.newspaper.data.entity.ArticleBookmark
+import com.example.newspaper.data.entity.NewsData
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
@@ -34,10 +34,11 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
         })
     }
 
-    fun insertToBookmarks(articleBookmarks: ArticleBookmarks) {
-        repo.putToBookmarks(listOf(articleBookmarks))
+    fun insertToBookmarks(articleBookmark: ArticleBookmark) {
+        repo.putToBookmarks(articleBookmark)
     }
 
     fun getNewsFromDB(): List<Article> = repo.getAllFromDB()
-    fun getNewsFromBookmarks(): List<ArticleBookmarks> = repo.getAllFromBookmarks()
+
+    fun getNewsFromBookmarks(): List<ArticleBookmark> = repo.getAllFromBookmarks()
 }

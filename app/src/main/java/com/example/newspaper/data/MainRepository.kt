@@ -1,8 +1,8 @@
 package com.example.newspaper.data
 
-import com.example.newspaper.data.Entity.Article
-import com.example.newspaper.data.Entity.ArticleBookmarks
-import com.example.newspaper.data.Entity.dao.NewsDao
+import com.example.newspaper.data.entity.Article
+import com.example.newspaper.data.entity.ArticleBookmark
+import com.example.newspaper.data.entity.dao.NewsDao
 import java.util.concurrent.Executors
 
 class MainRepository(private val newsDao: NewsDao) {
@@ -17,14 +17,18 @@ class MainRepository(private val newsDao: NewsDao) {
         return newsDao.getCashedNews()
     }
 
-    fun putToBookmarks(articleBookmarks: List<ArticleBookmarks>) {
+    fun putToBookmarks(articleBookmark: ArticleBookmark) {
         Executors.newSingleThreadExecutor().execute {
-            newsDao.insertMarked(articleBookmarks)
+            newsDao.insertMarked(articleBookmark)
         }
     }
 
-    fun getAllFromBookmarks(): List<ArticleBookmarks> {
-        return newsDao.getMarkedNews()
+    fun getAllFromBookmarks(): List<ArticleBookmark> = newsDao.getMarkedNews()
+
+    fun deleteBookmark(articleBookmark: ArticleBookmark) {
+        Executors.newSingleThreadExecutor().execute {
+            newsDao.deleteBookmark(articleBookmark)
+        }
     }
 
 }

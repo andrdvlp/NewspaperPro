@@ -2,8 +2,8 @@ package com.example.newspaper.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.newspaper.data.Entity.dao.NewsDao
-import com.example.newspaper.data.Entity.db.AppDatabase
+import com.example.newspaper.data.entity.dao.NewsDao
+import com.example.newspaper.data.entity.db.AppDatabase
 import com.example.newspaper.data.MainRepository
 import dagger.Module
 import dagger.Provides
