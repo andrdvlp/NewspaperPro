@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface NewsApi {
-    @GET("v2/everything?q=Apple&from=2021-10-13&sortBy=popularity&apiKey=c17983dc3961448588a71f963734ff32")
+    @GET("v2/everything?q=Apple&from=2021-10-23&sortBy=popularity&apiKey=c17983dc3961448588a71f963734ff32")
     fun getNews(): Call<NewsData>
 }
