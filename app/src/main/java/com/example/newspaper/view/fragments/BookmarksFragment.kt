@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newspaper.data.entity.Article
@@ -29,7 +30,7 @@ class BookmarksFragment : Fragment() {
         set(value) {
             //Если придет такое же значение то мы выходим из метода
             if (field == value) return
-            //Если прило другое значение, то кладем его в переменную
+            //Если пришло другое значение, то кладем его в переменную
             field = value
             //Обновляем RV адаптер
             newsAdapter.addItems(field)
@@ -47,20 +48,31 @@ class BookmarksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val markedList: List<Article> = emptyList()
+        initRecyckler()
 
-        binding.bookmarksRecycler.apply {
-            newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener {
+        viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<ArticleBookmark>> {
+            newsDataBase = it
+        })
+    }
+
+    fun initRecyckler() {
+        //находим наш RV
+        binding.mainRecycler.apply {
+            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
+            //оставим его пока пустым, он нам понадобится во второй части задания
+            newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener{
+
                 override fun click(article: Article) {
                     (requireActivity() as MainActivity).launchDetailsFragment(article)
                 }
             })
-
+            //Присваиваем адаптер
             adapter = newsAdapter
+            //Присвои layoutmanager
             layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(8)
+            //Применяем декоратор для отступов
+            val decorator = TopSpacingItemDecoration(10)
             addItemDecoration(decorator)
         }
-        newsAdapter.addItems(markedList)
     }
 }

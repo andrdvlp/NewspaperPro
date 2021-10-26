@@ -52,8 +52,6 @@ class HomeFragment : Fragment() {
         viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<Article>> {
             newsDataBase = it
         })
-
-
     }
 
     private fun initRecyckler() {
@@ -75,9 +73,5 @@ class HomeFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(10)
             addItemDecoration(decorator)
         }
-
-
     }
-
-
 }
