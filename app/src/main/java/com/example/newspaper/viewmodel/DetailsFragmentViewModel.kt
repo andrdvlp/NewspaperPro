@@ -26,7 +26,7 @@ class DetailsFragmentViewModel : ViewModel() {
 
 
     //не забыть реализовать удаление
-//    fun deleteBookmark(articleBookmark: ArticleBookmark) {
-//        interactor.delete.(articleBookmark)
-//    }
+    fun deleteBookmark(articleBookmark: ArticleBookmark) {
+        interactor.deleteNewsFromBookmarks(articleBookmark)
+    }
 }
