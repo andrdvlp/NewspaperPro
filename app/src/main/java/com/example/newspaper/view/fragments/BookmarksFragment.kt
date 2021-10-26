@@ -57,7 +57,7 @@ class BookmarksFragment : Fragment() {
 
     fun initRecyckler() {
         //находим наш RV
-        binding.mainRecycler.apply {
+        binding.bookmarksRecycler.apply {
             //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
             //оставим его пока пустым, он нам понадобится во второй части задания
             newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener{
