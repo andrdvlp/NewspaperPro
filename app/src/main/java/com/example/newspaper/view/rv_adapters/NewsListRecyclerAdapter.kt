@@ -34,6 +34,7 @@ class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
             }
         }
     }
+
         //Метод для добавления объектов в наш список
         fun addItems(list: List<Article>) {
             //Сначала очищаем(если не реализовать DiffUtils)
@@ -43,7 +44,6 @@ class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
             //Уведомляем RV, что пришел новый список, и ему нужно заново все "привязывать"
             notifyDataSetChanged()
         }
-
 
         //Интерфейс для обработки кликов
         interface OnItemClickListener {

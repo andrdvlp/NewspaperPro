@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.databinding.FragmentBookmarksBinding
+import com.example.newspaper.util.toArticle
 import com.example.newspaper.view.MainActivity
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
@@ -24,17 +25,6 @@ class BookmarksFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(BookmarksFragmentViewModel::class.java)
     }
-
-    private var newsDataBase = listOf<ArticleBookmark>()
-
-        set(value) {
-            //Если придет такое же значение то мы выходим из метода
-            if (field == value) return
-            //Если пришло другое значение, то кладем его в переменную
-            field = value
-            //Обновляем RV адаптер
-            newsAdapter.addItems(field)
-        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,8 +40,13 @@ class BookmarksFragment : Fragment() {
 
         initRecyckler()
 
-        viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<ArticleBookmark>> {
-            newsDataBase = it
+        viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<ArticleBookmark>> { list ->
+//            val articleList = mutableListOf<Article>()
+//            it.forEach { item ->
+//                articleList.add(item.toArticle())
+//            }
+//            вызываем map  на каждом элементе спика ArticleBookmark, возвращает новый списко состоящий из article
+            newsAdapter.addItems(list.map { it.toArticle()})
         })
     }
 
