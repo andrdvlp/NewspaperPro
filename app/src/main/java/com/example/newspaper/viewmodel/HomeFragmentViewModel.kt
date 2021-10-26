@@ -14,7 +14,7 @@ import javax.inject.Inject
 class HomeFragmentViewModel : ViewModel() {
 
     val newsListLiveData = MutableLiveData<List<Article>>()
-    var bookmarksListData = MutableLiveData<List<ArticleBookmark>>()
+
     //Инициализируем интерактор
     @Inject
     lateinit var interactor: Interactor
@@ -22,7 +22,6 @@ class HomeFragmentViewModel : ViewModel() {
     init {
         App.instance.dagger.inject(this)
         getNews()
-        //bookmarksListData.postValue(interactor.getNewsFromBookmarks())
     }
 
     fun getNews() {
@@ -37,10 +36,6 @@ class HomeFragmentViewModel : ViewModel() {
                 }
             }
         })
-    }
-
-    fun insertToBookmarks (article: Article) {
-        interactor.insertToBookmarks(article.toBookmarks())
     }
 
     interface ApiCallback {

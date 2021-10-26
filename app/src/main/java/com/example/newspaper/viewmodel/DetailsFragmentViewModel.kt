@@ -24,8 +24,9 @@ class DetailsFragmentViewModel : ViewModel() {
         interactor.insertToBookmarks(article.toBookmarks())
     }
 
-    interface ApiCallback {
-        fun onSuccess(article: List<Article>)
-        fun onFailure()
-    }
+
+    //не забыть реализовать удаление
+//    fun deleteBookmark(articleBookmark: ArticleBookmark) {
+//        interactor.delete.(articleBookmark)
+//    }
 }
