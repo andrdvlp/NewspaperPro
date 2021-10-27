@@ -1,6 +1,5 @@
 package com.example.newspaper.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newspaper.App
 import com.example.newspaper.data.entity.Article
@@ -26,7 +25,7 @@ class DetailsFragmentViewModel : ViewModel() {
 
 
     //не забыть реализовать удаление
-    fun deleteBookmark(articleBookmark: ArticleBookmark) {
-        interactor.deleteNewsFromBookmarks(articleBookmark)
+    fun deleteBookmark(id: Int) {
+        interactor.deleteNewsFromBookmarks(id)
     }
 }

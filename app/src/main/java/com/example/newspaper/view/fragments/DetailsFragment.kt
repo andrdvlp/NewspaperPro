@@ -47,7 +47,7 @@ class DetailsFragment : Fragment() {
             } else {
                 binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
                 article.isMarked = false
-                viewModel.deleteBookmark(articleBookmark)
+                viewModel.deleteBookmark(article.id)
             }
         }
 
