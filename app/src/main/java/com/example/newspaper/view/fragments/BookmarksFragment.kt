@@ -45,7 +45,7 @@ class BookmarksFragment : Fragment() {
 //            it.forEach { item ->
 //                articleList.add(item.toArticle())
 //            }
-//            вызываем map  на каждом элементе спика ArticleBookmark, возвращает новый списко состоящий из article
+//            вызываем map  на каждом элементе спика ArticleBookmark, возвращает новый список состоящий из article
             newsAdapter.addItems(list.map { it.toArticle()})
         })
     }

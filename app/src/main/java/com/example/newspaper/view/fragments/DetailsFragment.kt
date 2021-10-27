@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.newspaper.R
 import com.example.newspaper.data.entity.Article
+import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.databinding.FragmentDetailsBinding
 import com.example.newspaper.viewmodel.DetailsFragmentViewModel
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
@@ -17,6 +18,7 @@ class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var article: Article
+    private lateinit var articleBookmark: ArticleBookmark
 
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(DetailsFragmentViewModel::class.java)
@@ -38,6 +40,15 @@ class DetailsFragment : Fragment() {
 
         binding.detailsFabMarked.setOnClickListener {
             viewModel.insertToBookmarks(article)
+            if (!article.isMarked) {
+                viewModel.insertToBookmarks(article)
+                binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_24)
+                article.isMarked = true
+            } else {
+                binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
+                article.isMarked = false
+                viewModel.deleteBookmark(articleBookmark)
+            }
         }
 
         binding.detailsFab.setOnClickListener {
@@ -55,9 +66,14 @@ class DetailsFragment : Fragment() {
             .into(binding.appBarImage)
         binding.detailsDescription.text = article.description
 
-        binding.detailsFabMarked.setImageResource(
-            if (article.isMarked) R.drawable.ic_baseline_bookmark_24
-            else R.drawable.ic_baseline_bookmark_border_24
-        )
+//        binding.detailsFabMarked.setOnClickListener {
+//            if (!article.isMarked) {
+//                binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_24)
+//                article.isMarked = true
+//            } else {
+//                binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
+//                article.isMarked = false
+//            }
+//        }
     }
 }
