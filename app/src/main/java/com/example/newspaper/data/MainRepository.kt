@@ -30,5 +30,4 @@ class MainRepository(private val newsDao: NewsDao) {
             newsDao.deleteBookmark(articleBookmark)
         }
     }
-
 }
