@@ -23,6 +23,6 @@ interface NewsDao {
     @Delete
     fun deleteBookmark(articleBookmark: ArticleBookmark)
 
-    @Query("DELETE FROM marked_news WHERE id = :id")
-    fun deleteFromB(id: Int)
+    @Query("DELETE FROM marked_news WHERE title = :title")
+    fun deleteFromB(title: String)
 }

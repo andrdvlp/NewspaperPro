@@ -11,6 +11,7 @@ import com.example.newspaper.R
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.databinding.FragmentDetailsBinding
+import com.example.newspaper.util.toBookmarks
 import com.example.newspaper.viewmodel.DetailsFragmentViewModel
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
 
@@ -47,7 +48,7 @@ class DetailsFragment : Fragment() {
             } else {
                 binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
                 article.isMarked = false
-//                 viewModel.deleteBookmark(article)
+                 viewModel.deleteBookmark(article.toBookmarks())
 //                viewModel.removeB(article.id)
             }
         }
@@ -67,6 +68,12 @@ class DetailsFragment : Fragment() {
             .into(binding.appBarImage)
         binding.detailsDescription.text = article.description
 
+        if (article.isMarked) {
+            binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_24)
+        } else {
+            binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
+
+        }
 //        binding.detailsFabMarked.setOnClickListener {
 //            if (!article.isMarked) {
 //                binding.detailsFabMarked.setImageResource(R.drawable.ic_baseline_bookmark_24)

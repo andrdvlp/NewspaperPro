@@ -25,9 +25,9 @@ class MainRepository(private val newsDao: NewsDao) {
 
     fun getAllFromBookmarks(): List<ArticleBookmark> = newsDao.getMarkedNews()
 
-    fun deleteBookmark(articleBookmark: ArticleBookmark) {
+    fun deleteBookmark(title: String) {
         Executors.newSingleThreadExecutor().execute {
-            newsDao.deleteBookmark(articleBookmark)
+            newsDao.deleteFromB(title)
         }
     }
 }

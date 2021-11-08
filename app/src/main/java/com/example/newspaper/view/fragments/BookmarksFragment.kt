@@ -50,6 +50,16 @@ class BookmarksFragment : Fragment() {
         })
     }
 
+    // залггитровать то происходит с фрагмиентом
+    // понять что с колюэками
+    // дифф утилщз
+    // научить фрагмент обновлять данные в ресайклер вью
+
+    override fun onResume() {
+        super.onResume()
+       if(this::newsAdapter.isInitialized) newsAdapter.notifyDataSetChanged()
+    }
+
     fun initRecyckler() {
         //находим наш RV
         binding.bookmarksRecycler.apply {

@@ -16,5 +16,5 @@ data class ArticleBookmark(
     @Embedded val source: @RawValue Source,
     @ColumnInfo(name = "picture_path") val urlToImage: String,
     @ColumnInfo(name = "description") val description: String,
-     val isMarked: Boolean = false
+     val isMarked: Boolean = true
 ) : Parcelable

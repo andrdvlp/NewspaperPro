@@ -9,7 +9,8 @@ fun Article.toBookmarks() = ArticleBookmark(
     publishedAt = publishedAt,
     source = source,
     urlToImage = urlToImage,
-    description = description
+    description = description,
+    isMarked = true
 )
 
 fun ArticleBookmark.toArticle() = Article(
