@@ -1,6 +1,7 @@
 package com.example.newspaper.viewmodel
 
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newspaper.App
 import com.example.newspaper.data.db_fav.ArticleFavorite
@@ -12,6 +13,7 @@ import javax.inject.Inject
 
 
 class HomeFragmentViewModel : ViewModel() {
+    val newsListLiveData = MutableLiveData<List<ArticleFavorite>>()
 
     val newsListData: Observable<List<Article>>
     //Инициализируем интерактор
@@ -27,12 +29,10 @@ class HomeFragmentViewModel : ViewModel() {
         interactor.getNewsFromApi()
     }
 
-    fun getAllFav(): List<ArticleFavorite> {
-        var favor: List<ArticleFavorite>
+    fun getAllFav() {
         Executors.newSingleThreadExecutor().execute {
-            favor = interactor.getAllFav()
+            newsListLiveData.postValue(interactor.getAllFav())
         }
-        return favor
     }
 
 

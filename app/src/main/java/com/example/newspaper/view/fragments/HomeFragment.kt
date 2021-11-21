@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
         initPullToRefresh()
         initRecyckler()
 
-        favoriteslist = viewModel.getAllFav()
+
 
         viewModel.newsListData
                 .subscribeOn(Schedulers.io())
