@@ -7,6 +7,7 @@ import com.example.newspaper.data.db_fav.ArticleFavorite
 import com.example.newspaper.data.db_first.entity.Article
 import com.example.newspaper.interactor.Interactor
 import io.reactivex.rxjava3.core.Observable
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 
@@ -26,7 +27,13 @@ class HomeFragmentViewModel : ViewModel() {
         interactor.getNewsFromApi()
     }
 
-    fun getAllFav(): List<ArticleFavorite> = interactor.getAllFav()
+    fun getAllFav(): List<ArticleFavorite> {
+        var favor: List<ArticleFavorite>
+        Executors.newSingleThreadExecutor().execute {
+            favor = interactor.getAllFav()
+        }
+        return favor
+    }
 
 
 
