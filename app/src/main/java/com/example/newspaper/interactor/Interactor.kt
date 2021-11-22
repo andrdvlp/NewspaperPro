@@ -6,7 +6,9 @@ import com.example.newspaper.data.entity.NewsData
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,12 +21,18 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
             override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = response.body()?.articles
-                list?.forEach {
+
+                Completable.fromSingle<List<Article>> {
                     repo.putToDb(list)
                 }
-                if (list != null) {
-                    callback.onSuccess(list)
-                }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe()
+//                list?.forEach {
+//                    repo.putToDb(list)
+//                }
+//                if (list != null) {
+//                    callback.onSuccess(list)
+//                }
             }
 
             override fun onFailure(call: Call<NewsData>, t: Throwable) {
