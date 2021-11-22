@@ -3,12 +3,13 @@ package com.example.newspaper.data.entity.dao
 import androidx.room.*
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
+import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface NewsDao {
     //Cashed
     @Query("SELECT*FROM cashed_news")
-    fun getCashedNews(): List<Article>
+    fun getCashedNews(): Observable<List<Article>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: List<Article>)

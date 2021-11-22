@@ -6,6 +6,7 @@ import com.example.newspaper.data.entity.NewsData
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +39,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
         repo.putToBookmarks(articleBookmark)
     }
 
-    fun getNewsFromDB(): List<Article> = repo.getAllFromDB()
+    fun getNewsFromDB(): Observable<List<Article>> = repo.getAllFromDB()
     fun deleteNewsFromBookmarks(articleBookmark: ArticleBookmark) = repo.deleteBookmark(articleBookmark.title)
     fun getNewsFromBookmarks(): List<ArticleBookmark> = repo.getAllFromBookmarks()
 

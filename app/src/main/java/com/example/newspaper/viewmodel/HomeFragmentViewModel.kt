@@ -7,13 +7,14 @@ import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.interactor.Interactor
 import com.example.newspaper.util.toBookmarks
+import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
 
 class HomeFragmentViewModel : ViewModel() {
 
-    val newsListLiveData = MutableLiveData<List<Article>>()
+    val newsListData = Observable<List<Article>>
 
     //Инициализируем интерактор
     @Inject
@@ -21,6 +22,7 @@ class HomeFragmentViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
+        newsListData = interactor.getNewsFromDB()
         getNews()
     }
 
