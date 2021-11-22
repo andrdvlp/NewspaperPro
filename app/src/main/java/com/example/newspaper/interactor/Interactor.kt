@@ -17,7 +17,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
     fun getNewsFromApi() {
-        retrofitService.getNews()
+        retrofitService.getNews().enqueue(object : Callback<NewsData> {
             override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = response.body()?.articles
