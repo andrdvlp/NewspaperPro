@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
 
-    val newsListData = Observable<List<Article>>
+    val newsListData: Observable<List<Article>>
 
     //Инициализируем интерактор
     @Inject
@@ -27,17 +27,18 @@ class HomeFragmentViewModel : ViewModel() {
     }
 
     fun getNews() {
-        interactor.getNewsFromApi(object : ApiCallback {
-            override fun onSuccess(article: List<Article>) {
-                newsListLiveData.postValue(article)
-            }
-
-            override fun onFailure() {
-                Executors.newSingleThreadExecutor().execute {
-                    newsListLiveData.postValue(interactor.getNewsFromDB())
-                }
-            }
-        })
+        interactor.getNewsFromApi()
+//        interactor.getNewsFromApi(object : ApiCallback {
+//            override fun onSuccess(article: List<Article>) {
+//                newsListData.postValue(article)
+//            }
+//
+//            override fun onFailure() {
+//                Executors.newSingleThreadExecutor().execute {
+//                    newsListLiveData.postValue(interactor.getNewsFromDB())
+//                }
+//            }
+//        })
     }
 
     interface ApiCallback {

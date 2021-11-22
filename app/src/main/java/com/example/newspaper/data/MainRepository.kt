@@ -3,6 +3,7 @@ package com.example.newspaper.data
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.data.entity.dao.NewsDao
+import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.Executors
 
 class MainRepository(private val newsDao: NewsDao) {
@@ -13,7 +14,7 @@ class MainRepository(private val newsDao: NewsDao) {
         }
     }
 
-    fun getAllFromDB(): List<Article> {
+    fun getAllFromDB(): Observable<List<Article>> {
         return newsDao.getCashedNews()
     }
 

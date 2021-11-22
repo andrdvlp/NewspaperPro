@@ -16,29 +16,24 @@ import retrofit2.Response
 class Interactor(private val repo: MainRepository, private val retrofitService: NewsApi) {
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
-    fun getNewsFromApi(callback: HomeFragmentViewModel.ApiCallback) {
-        retrofitService.getNews().enqueue(object : Callback<NewsData> {
+    fun getNewsFromApi() {
+        retrofitService.getNews()
             override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = response.body()?.articles
 
                 Completable.fromSingle<List<Article>> {
-                    repo.putToDb(list)
+                    if (list != null) {
+                        repo.putToDb(list)
+                    }
                 }
                     .subscribeOn(Schedulers.io())
                     .subscribe()
-//                list?.forEach {
-//                    repo.putToDb(list)
-//                }
-//                if (list != null) {
-//                    callback.onSuccess(list)
-//                }
             }
 
             override fun onFailure(call: Call<NewsData>, t: Throwable) {
                 println("VVV onFailure")
                 //В случае провала вызываем другой метод коллбека
-                callback.onFailure()
             }
         })
     }
