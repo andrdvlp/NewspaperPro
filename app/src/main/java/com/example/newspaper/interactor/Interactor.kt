@@ -17,25 +17,29 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
     fun getNewsFromApi() {
-        retrofitService.getNews().enqueue(object : Callback<NewsData> {
-            override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
-                //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
-                val list = response.body()?.articles
+//        retrofitService.getNews().enqueue(object : Callback<NewsData> {
+//            override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
+//                //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
+//                val list = response.body()?.articles
+//
+//                Completable.fromSingle<List<Article>> {
+//                    if (list != null) {
+//                        repo.putToDb(list)
+//                    }
+//                }
+//                    .subscribeOn(Schedulers.io())
+//                    .subscribe()
+//            }
+//
+//            override fun onFailure(call: Call<NewsData>, t: Throwable) {
+//                println("VVV onFailure")
+//                //В случае провала вызываем другой метод коллбека
+//            }
+//        })
 
-                Completable.fromSingle<List<Article>> {
-                    if (list != null) {
-                        repo.putToDb(list)
-                    }
-                }
-                    .subscribeOn(Schedulers.io())
-                    .subscribe()
-            }
-
-            override fun onFailure(call: Call<NewsData>, t: Throwable) {
-                println("VVV onFailure")
-                //В случае провала вызываем другой метод коллбека
-            }
-        })
+        retrofitService.getNews()
+            .subscribeOn(Schedulers.io())
+            .subscribe()
     }
 
     fun insertToBookmarks(articleBookmark: ArticleBookmark) {
