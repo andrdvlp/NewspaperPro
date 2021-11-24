@@ -5,12 +5,13 @@ import androidx.lifecycle.ViewModel
 import com.example.newspaper.App
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.interactor.Interactor
+import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class BookmarksFragmentViewModel : ViewModel() {
 
-    val newsListLiveData = MutableLiveData<List<ArticleBookmark>>()
+    val newsListData: Observable<List<ArticleBookmark>>
     //Инициализируем интерактор
     @Inject
     lateinit var interactor: Interactor
@@ -21,8 +22,6 @@ class BookmarksFragmentViewModel : ViewModel() {
     }
 
     private fun getNews() {
-        Executors.newSingleThreadExecutor().execute {
-            newsListLiveData.postValue(interactor.getNewsFromBookmarks())
-        }
+       interactor.getNewsFromBookmarks()
     }
 }

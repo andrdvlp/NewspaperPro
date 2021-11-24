@@ -16,6 +16,8 @@ import com.example.newspaper.view.MainActivity
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
 import com.example.newspaper.viewmodel.BookmarksFragmentViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class BookmarksFragment : Fragment() {
 
@@ -40,15 +42,22 @@ class BookmarksFragment : Fragment() {
 
         initRecyckler()
 
-        viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<ArticleBookmark>> { list ->
-//            val articleList = mutableListOf<Article>()
-//            it.forEach { item ->
-//                articleList.add(item.toArticle())
-//            }
-//            вызываем map  на каждом элементе спика ArticleBookmark, возвращает новый список состоящий из article
-            newsAdapter.addItems(list.map { it.toArticle()})
-        })
+        viewModel.newsListData
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { list ->
+                newsAdapter.addItems(list.map { it.toArticle() })
+            }
     }
+//        viewModel.newsListLiveData.observe(viewLifecycleOwner, Observer<List<ArticleBookmark>> { list ->
+////            val articleList = mutableListOf<Article>()
+////            it.forEach { item ->
+////                articleList.add(item.toArticle())
+////            }
+////            вызываем map  на каждом элементе спика ArticleBookmark, возвращает новый список состоящий из article
+//            newsAdapter.addItems(list.map { it.toArticle()})
+//        })
+//    }
 
     // залггитровать то происходит с фрагмиентом
     // понять что с колюэками

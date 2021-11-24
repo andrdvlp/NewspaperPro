@@ -48,9 +48,9 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
 
     fun getNewsFromDB(): Observable<List<Article>> = repo.getAllFromDB()
     fun deleteNewsFromBookmarks(articleBookmark: ArticleBookmark) = repo.deleteBookmark(articleBookmark.title)
-    fun getNewsFromBookmarks(): List<ArticleBookmark> = repo.getAllFromBookmarks()
+    fun getNewsFromBookmarks(): Observable<List<ArticleBookmark>> = repo.getAllFromBookmarks()
 
-    fun removeFromB(id: Int) {
-
-    }
+//    fun removeFromB(id: Int) {
+//
+//    }
 }

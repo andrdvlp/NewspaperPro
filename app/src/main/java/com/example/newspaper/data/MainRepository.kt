@@ -24,7 +24,7 @@ class MainRepository(private val newsDao: NewsDao) {
         }
     }
 
-    fun getAllFromBookmarks(): List<ArticleBookmark> = newsDao.getMarkedNews()
+    fun getAllFromBookmarks(): Observable<List<ArticleBookmark>> = newsDao.getMarkedNews()
 
     fun deleteBookmark(title: String) {
         Executors.newSingleThreadExecutor().execute {

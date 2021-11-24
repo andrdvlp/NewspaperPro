@@ -16,13 +16,13 @@ interface NewsDao {
 
     //Bookmarks
     @Query("SELECT*FROM marked_news")
-    fun getMarkedNews(): List<ArticleBookmark>
+    fun getMarkedNews(): Observable<List<ArticleBookmark>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMarked(articleBookmark: ArticleBookmark)
 
-    @Delete
-    fun deleteBookmark(articleBookmark: ArticleBookmark)
+//    @Delete
+//    fun deleteBookmark(articleBookmark: ArticleBookmark)
 
     @Query("DELETE FROM marked_news WHERE title = :title")
     fun deleteFromB(title: String)
