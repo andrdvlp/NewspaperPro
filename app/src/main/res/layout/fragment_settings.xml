@@ -6,9 +6,67 @@
     android:id="@+id/settings_fragment_root"
     tools:context=".view.fragments.SettingsFragment">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radio_group_lang"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/black"
+            android:layout_margin="8dp"
+            android:text="@string/radio_lang"/>
+
+        <RadioButton
+            android:id="@+id/radio_lang_eng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:text="@string/radio_lang_eng"/>
+        <RadioButton
+            android:id="@+id/radio_lang_ru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:text="@string/radio_lang_ru"/>
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radio_group_themes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="200dp" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/black"
+            android:layout_margin="8dp"
+            android:text="@string/radio_theme"/>
+
+        <RadioButton
+            android:id="@+id/radio_theme_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:text="@string/radio_theme_light"/>
+        <RadioButton
+            android:id="@+id/radio_theme_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:text="@string/radio_theme_dark"/>
+    </RadioGroup>
+
 </FrameLayout>
