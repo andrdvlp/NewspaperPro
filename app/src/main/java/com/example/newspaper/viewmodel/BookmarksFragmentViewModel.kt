@@ -19,6 +19,7 @@ class BookmarksFragmentViewModel : ViewModel() {
     init {
         App.instance.dagger.inject(this)
         getNews()
+        newsListData = interactor.getNewsFromBookmarks()
     }
 
     private fun getNews() {

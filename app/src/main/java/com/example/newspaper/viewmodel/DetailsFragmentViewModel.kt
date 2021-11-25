@@ -28,8 +28,4 @@ class DetailsFragmentViewModel : ViewModel() {
     fun deleteBookmark(articleBookmark: ArticleBookmark) {
         interactor.deleteNewsFromBookmarks(articleBookmark)
     }
-
-    fun removeB (id: Int) {
-        interactor.removeFromB(id)
-    }
 }

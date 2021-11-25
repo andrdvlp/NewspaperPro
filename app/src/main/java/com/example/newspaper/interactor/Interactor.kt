@@ -36,10 +36,6 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                 //В случае провала вызываем другой метод коллбека
             }
         })
-
-//        retrofitService.getNews()
-//            .subscribeOn(Schedulers.io())
-//            .subscribe()
     }
 
     fun insertToBookmarks(articleBookmark: ArticleBookmark) {
@@ -49,8 +45,4 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     fun getNewsFromDB(): Observable<List<Article>> = repo.getAllFromDB()
     fun deleteNewsFromBookmarks(articleBookmark: ArticleBookmark) = repo.deleteBookmark(articleBookmark.title)
     fun getNewsFromBookmarks(): Observable<List<ArticleBookmark>> = repo.getAllFromBookmarks()
-
-//    fun removeFromB(id: Int) {
-//
-//    }
 }

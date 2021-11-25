@@ -28,17 +28,6 @@ class HomeFragmentViewModel : ViewModel() {
 
     fun getNews() {
         interactor.getNewsFromApi()
-//        interactor.getNewsFromApi(object : ApiCallback {
-//            override fun onSuccess(article: List<Article>) {
-//                newsListData.postValue(article)
-//            }
-//
-//            override fun onFailure() {
-//                Executors.newSingleThreadExecutor().execute {
-//                    newsListLiveData.postValue(interactor.getNewsFromDB())
-//                }
-//            }
-//        })
     }
 
     interface ApiCallback {
