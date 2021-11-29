@@ -7,6 +7,7 @@ import com.example.newspaper.view.fragments.DetailsFragment
 import com.example.newspaper.viewmodel.BookmarksFragmentViewModel
 import com.example.newspaper.viewmodel.DetailsFragmentViewModel
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
+import com.example.newspaper.viewmodel.SettingsFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -21,8 +22,9 @@ import javax.inject.Singleton
 )
 
 interface AppComponent {
-    //метод для того, чтобы появилась внедрять зависимости в HomeFragmentViewModel
+    //метод для того, чтобы появилась возможность внедрять зависимости в HomeFragmentViewModel
     fun inject(homeFragmentViewModel: HomeFragmentViewModel)
     fun inject(bookmarksFragmentViewModel: BookmarksFragmentViewModel)
     fun inject(detailsFragmentViewModel: DetailsFragmentViewModel)
+    fun inject(settingsFragmentViewModel: SettingsFragmentViewModel)
 }

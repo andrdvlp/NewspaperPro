@@ -38,6 +38,13 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
         })
     }
 
+    //Метод для сохранения настроек
+    fun saveDefaultCategoryToPreferences(category: String) {
+        preferences.saveDefaultCategory(category)
+    }
+    //Метод для получения настроек
+    fun getDefaultCategoryFromPreferences() = preferences.geDefaultCategory()
+
     fun insertToBookmarks(articleBookmark: ArticleBookmark) {
         repo.putToBookmarks(articleBookmark)
     }
