@@ -14,7 +14,8 @@ class DomainModule {
 
     @Provides
     @Singleton
-    fun provideInteractor(repository: MainRepository, newsApi: NewsApi) = Interactor(repo = repository, retrofitService = newsApi)
+    fun provideInteractor(repository: MainRepository, newsApi: NewsApi, preferenceProvider: PreferenceProvider) =
+        Interactor(repo = repository, retrofitService = newsApi, preferences = preferenceProvider)
 
     @Provides
     @Singleton

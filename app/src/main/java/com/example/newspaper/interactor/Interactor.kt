@@ -1,10 +1,13 @@
 package com.example.newspaper.interactor
 
+import android.content.SharedPreferences
+import com.example.newspaper.data.ApiConstants
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.data.entity.NewsData
 import com.example.newspaper.data.MainRepository
 import com.example.newspaper.data.NewsApi
+import com.example.newspaper.data.PreferenceProvider
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
@@ -13,11 +16,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Interactor(private val repo: MainRepository, private val retrofitService: NewsApi) {
+class Interactor(private val repo: MainRepository, private val retrofitService: NewsApi, private val preferences: PreferenceProvider) {
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
     fun getNewsFromApi() {
-        retrofitService.getNews().enqueue(object : Callback<NewsData> {
+        retrofitService.getNews(getDefaultCategoryFromPreferences(), ApiConstants.KEY).enqueue(object : Callback<NewsData> {
             override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = response.body()?.articles
@@ -43,7 +46,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
         preferences.saveDefaultCategory(category)
     }
     //Метод для получения настроек
-    fun getDefaultCategoryFromPreferences() = preferences.geDefaultCategory()
+    fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
     fun insertToBookmarks(articleBookmark: ArticleBookmark) {
         repo.putToBookmarks(articleBookmark)

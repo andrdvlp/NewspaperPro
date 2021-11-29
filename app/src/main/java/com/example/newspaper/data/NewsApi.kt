@@ -4,8 +4,12 @@ import com.example.newspaper.data.entity.NewsData
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface NewsApi {
-    @GET("v2/everything?q=Apple&from=2021-11-23&sortBy=popularity&apiKey=c17983dc3961448588a71f963734ff32")
-    fun getNews(): Call<NewsData>
+    @GET("v2/top-headlines")
+    fun getNews(
+        @Query("language") language: String,
+        @Query("api_key") apiKey: String
+    ): Call<NewsData>
 }
