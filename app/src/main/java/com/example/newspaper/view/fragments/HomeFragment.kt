@@ -27,7 +27,6 @@ class HomeFragment : Fragment() {
     }
 
     private var newsDataBase = listOf<Article>()
-
         //Используем backing field
         set(value) {
             //Если придет такое же значение то мы выходим из метода
@@ -50,6 +49,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyckler()
+        initPullToRefresh()
 
         viewModel.newsListData
             .subscribeOn(Schedulers.io())
@@ -60,24 +60,35 @@ class HomeFragment : Fragment() {
             }
     }
 
-    private fun initRecyckler() {
-        //находим наш RV
-        binding.mainRecycler.apply {
-            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
-            //оставим его пока пустым, он нам понадобится во второй части задания
-            newsAdapter = NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener{
-
-                override fun click(article: Article) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(article)
-                }
-            })
-            //Присваиваем адаптер
-            adapter = newsAdapter
-            //Присвои layoutmanager
-            layoutManager = LinearLayoutManager(requireContext())
-            //Применяем декоратор для отступов
-            val decorator = TopSpacingItemDecoration(10)
-            addItemDecoration(decorator)
+    private fun initPullToRefresh() {
+        //Вешаем слушатель, чтобы вызвался pull to refresh
+        binding.pullToRefresh.setOnRefreshListener {
+        //Чистим адаптер
+        newsAdapter.items.clear()
+        //Делаем новый запрос фильмов на сервер
+        viewModel.getNews()
         }
     }
-}
+
+        private fun initRecyckler() {
+            //находим наш RV
+            binding.mainRecycler.apply {
+                //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
+                //оставим его пока пустым, он нам понадобится во второй части задания
+                newsAdapter =
+                    NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener {
+
+                        override fun click(article: Article) {
+                            (requireActivity() as MainActivity).launchDetailsFragment(article)
+                        }
+                    })
+                //Присваиваем адаптер
+                adapter = newsAdapter
+                //Присвои layoutmanager
+                layoutManager = LinearLayoutManager(requireContext())
+                //Применяем декоратор для отступов
+                val decorator = TopSpacingItemDecoration(10)
+                addItemDecoration(decorator)
+            }
+        }
+    }

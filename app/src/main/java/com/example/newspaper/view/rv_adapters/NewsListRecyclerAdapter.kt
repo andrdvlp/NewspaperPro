@@ -9,7 +9,7 @@ import com.example.newspaper.view.rv_viewholders.NewsViewHolder
 
 class NewsListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     //Здесь у нас хранится список элементов для RV
-    private val items = mutableListOf<Article>()
+    val items = mutableListOf<Article>()
 
     //Этот метод нужно переопределить на возврат количества элементов в списке RV
     override fun getItemCount() = items.size
