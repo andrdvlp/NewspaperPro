@@ -2,6 +2,8 @@
     <string name="app_name">Newspaper</string>
     <string name="radio_lang_ru">Russian</string>
     <string name="radio_lang_eng">English</string>
+    <string name="radio_cat_business">Business</string>
+    <string name="radio_cat_sport">Sport</string>
     <string name="radio_lang">Language</string>
 
     <string name="radio_theme">Theme</string>

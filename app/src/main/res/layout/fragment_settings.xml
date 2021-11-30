@@ -7,7 +7,7 @@
     tools:context=".view.fragments.SettingsFragment">
 
     <RadioGroup
-        android:id="@+id/radio_group_lang"
+        android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,21 +20,21 @@
             android:text="@string/radio_lang"/>
 
         <RadioButton
-            android:id="@+id/radio_lang_eng"
+            android:id="@+id/radio_business"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textColor="@color/black"
-            android:text="@string/radio_lang_eng"/>
+            android:text="@string/radio_cat_business"/>
         <RadioButton
-            android:id="@+id/radio_lang_ru"
+            android:id="@+id/radio_sports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textColor="@color/black"
-            android:text="@string/radio_lang_ru"/>
+            android:text="@string/radio_cat_sport"/>
     </RadioGroup>
 
     <RadioGroup
