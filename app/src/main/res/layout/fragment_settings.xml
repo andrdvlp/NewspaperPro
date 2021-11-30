@@ -17,7 +17,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/black"
             android:layout_margin="8dp"
-            android:text="@string/radio_lang"/>
+            android:text="@string/radio_cat"/>
 
         <RadioButton
             android:id="@+id/radio_business"

@@ -13,7 +13,7 @@ data class Article(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "publishedAt") val publishedAt: String,
     @Embedded val source: @RawValue Source,
-    @ColumnInfo(name = "picture_path") val urlToImage: String,
+    @ColumnInfo(name = "picture_path" ) var urlToImage: String,
     @ColumnInfo (name = "description") val description: String,
-     var isMarked: Boolean = false
+    var isMarked: Boolean = false
 ) : Parcelable
