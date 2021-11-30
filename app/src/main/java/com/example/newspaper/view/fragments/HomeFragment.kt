@@ -67,6 +67,8 @@ class HomeFragment : Fragment() {
         newsAdapter.items.clear()
         //Делаем новый запрос фильмов на сервер
         viewModel.getNews()
+        //Убираем крутящиеся колечко
+        binding.pullToRefresh.isRefreshing = false
         }
     }
 
