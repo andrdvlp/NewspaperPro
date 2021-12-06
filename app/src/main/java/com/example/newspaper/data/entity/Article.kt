@@ -2,6 +2,7 @@ package com.example.newspaper.data.entity
 
 import android.os.Parcelable
 import androidx.room.*
+import com.example.newspaper.R
 import kotlinx.android.parcel.RawValue
 import kotlinx.parcelize.Parcelize
 
@@ -13,7 +14,7 @@ data class Article(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "publishedAt") val publishedAt: String,
     @Embedded val source: @RawValue Source,
-    @ColumnInfo(name = "picture_path" ) var urlToImage: String,
-    @ColumnInfo (name = "description") val description: String,
+    @ColumnInfo(name = "picture_path") var urlToImage: String,
+    @ColumnInfo (name = "description") var description: String,
     var isMarked: Boolean = false
 ) : Parcelable

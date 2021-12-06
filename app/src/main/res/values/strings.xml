@@ -3,6 +3,7 @@
     <string name="radio_lang_ru">Russian</string>
     <string name="radio_lang_eng">English</string>
     <string name="radio_cat_business">Business</string>
+    <string name="radio_cat_general">Business</string>
     <string name="radio_cat_sport">Sport</string>
     <string name="radio_cat">Category</string>
 
@@ -10,4 +11,5 @@
     <string name="radio_theme_light">Light</string>
     <string name="radio_theme_dark">Dark</string>
 
+    <string name="no_image">https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg</string>
 </resources>

@@ -33,6 +33,7 @@ class SettingsFragment : Fragment() {
             when (it) {
                 BUSINESS_CATEGORY -> binding.radioGroup.check(R.id.radio_business)
                 SPORTS_CATEGORY -> binding.radioGroup.check(R.id.radio_sports)
+                GENERAL_CATEGORY -> binding.radioGroup.check(R.id.radio_general)
             }
         })
 
@@ -42,6 +43,7 @@ class SettingsFragment : Fragment() {
             when (checkedId) {
                 R.id.radio_business -> viewModel.putCategoryProperty(BUSINESS_CATEGORY)
                 R.id.radio_sports -> viewModel.putCategoryProperty(SPORTS_CATEGORY)
+                R.id.radio_general -> viewModel.putCategoryProperty(GENERAL_CATEGORY)
             }
         }
     }
@@ -49,5 +51,6 @@ class SettingsFragment : Fragment() {
     companion object {
         private const val BUSINESS_CATEGORY = "business"
         private const val SPORTS_CATEGORY = "sports"
+        private const val GENERAL_CATEGORY = "general"
     }
 }

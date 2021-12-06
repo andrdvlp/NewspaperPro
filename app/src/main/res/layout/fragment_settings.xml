@@ -18,7 +18,14 @@
             android:textColor="@color/black"
             android:layout_margin="8dp"
             android:text="@string/radio_cat"/>
-
+        <RadioButton
+            android:id="@+id/radio_general"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:text="General"/>
         <RadioButton
             android:id="@+id/radio_business"
             android:layout_width="match_parent"
