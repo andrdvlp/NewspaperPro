@@ -7,10 +7,10 @@ import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface NewsDao {
-    //Cashed
+    //Запрос на всю таблицу
     @Query("SELECT*FROM cashed_news")
     fun getCashedNews(): Observable<List<Article>>
-
+    //Заполняем нашу БД
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: List<Article>)
 
