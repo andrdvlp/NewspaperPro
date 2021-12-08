@@ -2,9 +2,9 @@ package com.example.newspaper.view.rv_viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.NewsItemBinding
+import com.squareup.picasso.Picasso
 
 class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -21,13 +21,19 @@ class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         title.text = article.title
         //Устанавливаем постер
         //Указываем контейнер, в которм будет "жить" наша картинка
-        Glide.with(itemView)
-            //Загружаем сам ресурс
+
+        Picasso.get()
             .load(article.urlToImage)
-            //Центруем изображение
-            .centerCrop()
-            //Указываем ImageView, куда будем загружать изображение
+//            .centerCrop()
             .into(picture)
+
+//        Glide.with(itemView)
+//            //Загружаем сам ресурс
+//            .load(article.urlToImage)
+//            //Центруем изображение
+//            .centerCrop()
+//            //Указываем ImageView, куда будем загружать изображение
+//            .into(picture)
         //Устанавливаем описание
         source.text = article.source.name
         time.text = article.publishedAt

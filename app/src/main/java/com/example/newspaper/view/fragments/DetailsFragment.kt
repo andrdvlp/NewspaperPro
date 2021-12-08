@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.example.newspaper.R
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
@@ -14,6 +13,7 @@ import com.example.newspaper.databinding.FragmentDetailsBinding
 import com.example.newspaper.util.toBookmarks
 import com.example.newspaper.viewmodel.DetailsFragmentViewModel
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
+import com.squareup.picasso.Picasso
 
 class DetailsFragment : Fragment() {
 
@@ -62,10 +62,16 @@ class DetailsFragment : Fragment() {
         article = arguments?.get("article") as Article
 
         binding.detailsToolbar.title = article.title
-        Glide.with(this)
+
+        Picasso.get()
             .load(article.urlToImage)
-            .centerCrop()
+//            .centerCrop()
             .into(binding.appBarImage)
+
+//        Glide.with(this)
+//            .load(article.urlToImage)
+//            .centerCrop()
+//            .into(binding.appBarImage)
         binding.detailsDescription.text = article.description
 
         if (article.isMarked) {
