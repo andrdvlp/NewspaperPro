@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.FragmentHomeBinding
+import com.example.newspaper.util.AutoDisposable
+import com.example.newspaper.util.addTo
 import com.example.newspaper.view.MainActivity
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
@@ -21,7 +23,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var newsAdapter: NewsListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
-
+    private val autoDisposable = AutoDisposable()
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
@@ -36,6 +38,12 @@ class HomeFragment : Fragment() {
             //Обновляем RV адаптер
             newsAdapter.addItems(field)
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+        autoDisposable.bindTo(lifecycle)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +66,7 @@ class HomeFragment : Fragment() {
                 newsAdapter.addItems(list)
                 newsDataBase = list
             }
+            .addTo(autoDisposable)
     }
 
     private fun initPullToRefresh() {

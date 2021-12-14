@@ -10,6 +10,7 @@ import com.example.newspaper.R
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.databinding.FragmentDetailsBinding
+import com.example.newspaper.util.AutoDisposable
 import com.example.newspaper.util.toBookmarks
 import com.example.newspaper.viewmodel.DetailsFragmentViewModel
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
@@ -20,10 +21,15 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var article: Article
     private lateinit var articleBookmark: ArticleBookmark
-
+//    private val autoDisposable = AutoDisposable()
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(DetailsFragmentViewModel::class.java)
     }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        autoDisposable.bindTo(lifecycle)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
