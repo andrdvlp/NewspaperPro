@@ -18,6 +18,8 @@ class MainRepository(private val newsDao: NewsDao) {
         return newsDao.getCashedNews()
     }
 
+    fun deleteAll() = newsDao.deleteAll()
+
     fun putToBookmarks(articleBookmark: ArticleBookmark) {
         Executors.newSingleThreadExecutor().execute {
             newsDao.insertMarked(articleBookmark)

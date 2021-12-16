@@ -28,16 +28,16 @@ class HomeFragment : Fragment() {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
 
-    private var newsDataBase = listOf<Article>()
-        //Используем backing field
-        set(value) {
-            //Если придет такое же значение то мы выходим из метода
-            if (field == value) return
-            //Если прило другое значение, то кладем его в переменную
-            field = value
-            //Обновляем RV адаптер
-            newsAdapter.addItems(field)
-        }
+//    private var newsDataBase = listOf<Article>()
+//        //Используем backing field
+//        set(value) {
+//            //Если придет такое же значение то мы выходим из метода
+//            if (field == value) return
+//            //Если прило другое значение, то кладем его в переменную
+//            field = value
+//            //Обновляем RV адаптер
+//            newsAdapter.addItems(field)
+//        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { list ->
                 newsAdapter.addItems(list)
-                newsDataBase = list
+//                newsDataBase = list
             }
             .addTo(autoDisposable)
     }

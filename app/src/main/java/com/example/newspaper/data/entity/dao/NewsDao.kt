@@ -13,6 +13,9 @@ interface NewsDao {
     //Заполняем нашу БД
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: List<Article>)
+    //Чистим нашу БД
+    @Query("DELETE FROM cashed_news")
+    fun deleteAll()
 
     //Bookmarks
     @Query("SELECT*FROM marked_news")
