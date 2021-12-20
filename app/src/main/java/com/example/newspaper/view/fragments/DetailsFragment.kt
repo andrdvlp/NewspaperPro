@@ -1,5 +1,7 @@
 package com.example.newspaper.view.fragments
 
+import android.content.Intent
+import android.content.Intent.EXTRA_TEXT
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,7 +61,20 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        binding.detailsFab.setOnClickListener {
+        binding.shareFab.setOnClickListener {
+            //create intent
+            val intent = Intent()
+            //choose action to start
+            intent.action = Intent.ACTION_SEND
+            //put data to intent
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Look at this: ${article.title} \n\n ${article.description}"
+            )
+            //УКазываем MIME тип, чтобы система знала, какое приложения предложить
+            intent.type = "text/plain"
+            //Запускаем наше активити
+            startActivity(Intent.createChooser(intent, "Share To:"))
         }
 
     }
