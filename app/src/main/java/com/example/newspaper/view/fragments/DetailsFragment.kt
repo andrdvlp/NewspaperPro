@@ -61,6 +61,12 @@ class DetailsFragment : Fragment() {
             }
         }
 
+        binding.sourceFab.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_VIEW,
+            startActivity(intent)
+        }
+
         binding.shareFab.setOnClickListener {
             //create intent
             val intent = Intent()
