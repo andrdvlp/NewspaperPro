@@ -14,6 +14,7 @@ data class ArticleBookmark(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "publishedAt") val publishedAt: String,
     @Embedded val source: @RawValue Source,
+    @ColumnInfo(name = "url") var url: String,
     @ColumnInfo(name = "picture_path") val urlToImage: String,
     @ColumnInfo(name = "description") val description: String,
      val isMarked: Boolean = true

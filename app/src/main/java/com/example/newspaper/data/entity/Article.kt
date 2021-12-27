@@ -14,6 +14,7 @@ data class Article(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "publishedAt") val publishedAt: String,
     @Embedded val source: @RawValue Source,
+    @ColumnInfo(name = "url") var url: String,
     @ColumnInfo(name = "picture_path", defaultValue = R.string.no_image.toString()) var urlToImage: String,
     @ColumnInfo (name = "description", defaultValue = "...") var description: String,
     var isMarked: Boolean = false

@@ -2,6 +2,7 @@ package com.example.newspaper.view.fragments
 
 import android.content.Intent
 import android.content.Intent.EXTRA_TEXT
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,10 +62,10 @@ class DetailsFragment : Fragment() {
             }
         }
 
+        val link = article.url
         binding.sourceFab.setOnClickListener {
-            val intent = Intent()
-            intent.action = Intent.ACTION_VIEW,
-            startActivity(intent)
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+            startActivity(browserIntent)
         }
 
         binding.shareFab.setOnClickListener {
