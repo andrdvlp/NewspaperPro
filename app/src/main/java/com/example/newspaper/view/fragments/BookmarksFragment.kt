@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newspaper.data.entity.Article
-import com.example.newspaper.data.entity.ArticleBookmark
 import com.example.newspaper.databinding.FragmentBookmarksBinding
 import com.example.newspaper.util.toArticle
 import com.example.newspaper.view.MainActivity

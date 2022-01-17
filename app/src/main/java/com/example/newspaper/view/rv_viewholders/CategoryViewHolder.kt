@@ -7,8 +7,8 @@ import com.example.newspaper.databinding.NewsItemBinding
 
 class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val categoryItemBinding = CategoryItemBinding.bind(itemView)
-    private val category = categoryItemBinding.categoryText
+    var categoryItemBinding = CategoryItemBinding.bind(itemView)
+    var category = categoryItemBinding.categoryText
 
     fun bind(string: String) {
         category.text = string

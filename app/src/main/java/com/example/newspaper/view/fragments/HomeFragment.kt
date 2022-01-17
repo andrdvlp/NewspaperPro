@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newspaper.data.entity.Article
@@ -13,6 +12,7 @@ import com.example.newspaper.databinding.FragmentHomeBinding
 import com.example.newspaper.util.AutoDisposable
 import com.example.newspaper.util.addTo
 import com.example.newspaper.view.MainActivity
+import com.example.newspaper.view.rv_adapters.CategoryRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
@@ -22,6 +22,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class HomeFragment : Fragment() {
 
     private lateinit var newsAdapter: NewsListRecyclerAdapter
+    private lateinit var categoryRecyclerAdapter: CategoryRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
     private val autoDisposable = AutoDisposable()
     private val viewModel by lazy {
