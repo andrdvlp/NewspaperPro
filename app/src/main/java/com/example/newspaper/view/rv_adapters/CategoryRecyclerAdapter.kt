@@ -1,5 +1,6 @@
 package com.example.newspaper.view.rv_adapters
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,6 +22,8 @@ class CategoryRecyclerAdapter(private val clickListener: OnItemClickListener) : 
         )
     }
 
+    //Метод для добавления объектов в наш список
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is CategoryViewHolder -> {
@@ -41,6 +44,21 @@ class CategoryRecyclerAdapter(private val clickListener: OnItemClickListener) : 
                 }
             }
         }
+    }
+
+    //Метод для добавления объектов в наш список
+    @SuppressLint("NotifyDataSetChanged")
+    fun addItems(list: List<String>) {
+        //Сначала очищаем(если не реализовать DiffUtils)
+        items.clear()
+        //Добавляем
+        items.addAll(list)
+        //Уведомляем RV, что пришел новый список, и ему нужно заново все "привязывать"
+        notifyDataSetChanged()
+    }
+
+    fun setCategory(categoryFromRecycler: String) {
+        category = categoryFromRecycler
     }
 
     override fun getItemCount(): Int {

@@ -1,5 +1,6 @@
 package com.example.newspaper.view.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newspaper.R
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.databinding.FragmentHomeBinding
 import com.example.newspaper.util.AutoDisposable
@@ -58,6 +60,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyckler()
+        initRecyclerCat()
+        categoryRecyclerAdapter.addItems(getCatList())
         initPullToRefresh()
 
         viewModel.newsListData
@@ -73,34 +77,63 @@ class HomeFragment : Fragment() {
     private fun initPullToRefresh() {
         //Вешаем слушатель, чтобы вызвался pull to refresh
         binding.pullToRefresh.setOnRefreshListener {
-        //Чистим адаптер
-        newsAdapter.items.clear()
-        //Делаем новый запрос фильмов на сервер
-        viewModel.getNews()
-        //Убираем крутящиеся колечко
-        binding.pullToRefresh.isRefreshing = false
+            //Чистим адаптер
+            newsAdapter.items.clear()
+            //Делаем новый запрос фильмов на сервер
+            viewModel.getNews()
+            //Убираем крутящиеся колечко
+            binding.pullToRefresh.isRefreshing = false
         }
     }
 
-        private fun initRecyckler() {
-            //находим наш RV
-            binding.mainRecycler.apply {
-                //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
-                //оставим его пока пустым, он нам понадобится во второй части задания
-                newsAdapter =
-                    NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener {
+    private fun initRecyckler() {
+        //находим наш RV
+        binding.mainRecycler.apply {
+            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
+            //оставим его пока пустым, он нам понадобится во второй части задания
+            newsAdapter =
+                NewsListRecyclerAdapter(object : NewsListRecyclerAdapter.OnItemClickListener {
 
-                        override fun click(article: Article) {
-                            (requireActivity() as MainActivity).launchDetailsFragment(article)
-                        }
-                    })
-                //Присваиваем адаптер
-                adapter = newsAdapter
-                //Присвои layoutmanager
-                layoutManager = LinearLayoutManager(requireContext())
-                //Применяем декоратор для отступов
-                val decorator = TopSpacingItemDecoration(10)
-                addItemDecoration(decorator)
-            }
+                    override fun click(article: Article) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(article)
+                    }
+                })
+            //Присваиваем адаптер
+            adapter = newsAdapter
+            //Присвои layoutmanager
+            layoutManager = LinearLayoutManager(requireContext())
+            //Применяем декоратор для отступов
+            val decorator = TopSpacingItemDecoration(10)
+            addItemDecoration(decorator)
         }
     }
+
+    private fun initRecyclerCat() {
+        //находим наш RV
+        binding.categoryRecycler.apply {
+            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
+            //оставим его пока пустым, он нам понадобится во второй части задания
+            categoryRecyclerAdapter = CategoryRecyclerAdapter(object : CategoryRecyclerAdapter.OnItemClickListener {
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun click(string: String) {
+                        viewModel.setCategoryProperty(string)
+                        categoryRecyclerAdapter.setCategory(string)
+                        categoryRecyclerAdapter.addItems(getCatList())
+                        viewModel.getNews()
+                    }
+                })
+            //Присваиваем адаптер
+            adapter = categoryRecyclerAdapter
+            //Присвои layoutmanager
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            //Применяем декоратор для отступов
+            val decorator = TopSpacingItemDecoration(10)
+            addItemDecoration(decorator)
+        }
+    }
+
+    private fun getCatList(): List<String> {
+        return this.resources.getStringArray(R.array.api_category).toList()
+    }
+}

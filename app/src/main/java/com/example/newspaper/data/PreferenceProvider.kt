@@ -7,6 +7,7 @@ import androidx.core.content.edit
 class PreferenceProvider(context: Context) {
     private val appContext = context.applicationContext
     private val preference: SharedPreferences = appContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
+    private var category : String
 
     init {
         //Логика для первого запуска приложения, чтобы положить наши настройки,
@@ -15,6 +16,7 @@ class PreferenceProvider(context: Context) {
             preference.edit { putString(KEY_DEFAULT_CATEGORY, DEFAULT_CATEGORY) }
             preference.edit { putBoolean(KEY_FIRST_LAUNCH, false) }
         }
+        category = "General"
     }
     //Category prefs
     //Сохраняем категорию
@@ -24,6 +26,10 @@ class PreferenceProvider(context: Context) {
     //Забираем категорию
     fun getDefaultCategory(): String {
         return preference.getString(KEY_DEFAULT_CATEGORY, DEFAULT_CATEGORY) ?: DEFAULT_CATEGORY
+    }
+
+    fun setCategory(categoryFromRecycler: String) {
+        category = categoryFromRecycler
     }
     //Ключи для наших настроек, по ним мы их будем получать
     companion object {
