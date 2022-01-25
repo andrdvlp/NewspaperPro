@@ -31,6 +31,7 @@ class PreferenceProvider(context: Context) {
     fun setCategory(categoryFromRecycler: String) {
         category = categoryFromRecycler
     }
+
     //Ключи для наших настроек, по ним мы их будем получать
     companion object {
         private const val KEY_FIRST_LAUNCH = "first_launch"
