@@ -6,21 +6,16 @@ import com.example.newspaper.data.NewsApi
 import com.example.newspaper.data.PreferenceProvider
 import com.example.newspaper.data.entity.Article
 import com.example.newspaper.data.entity.ArticleBookmark
-import com.example.newspaper.data.entity.NewsData
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class Interactor(private val repo: MainRepository, private val retrofitService: NewsApi, private val preferences: PreferenceProvider) {
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
     fun getNewsFromApi() {
-        retrofitService.getNews(getDefaultCategoryFromPreferences(), ApiConstants.KEY)
+        retrofitService.getNews(getDefaultLangFromPreferences(), getCategory(), ApiConstants.KEY)
             .subscribeOn(Schedulers.io())
             .map {
                 it.articles
@@ -36,11 +31,11 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     }
 
     //Метод для сохранения настроек
-    fun saveDefaultCategoryToPreferences(category: String) {
-        preferences.saveDefaultCategory(category)
+    fun saveDefaultLangToPreferences(language: String) {
+        preferences.saveDefaultLang(language)
     }
     //Метод для получения настроек
-    fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
+    fun getDefaultLangFromPreferences() = preferences.getDefaultLang()
 
     fun insertToBookmarks(articleBookmark: ArticleBookmark) {
         repo.putToBookmarks(articleBookmark)
@@ -57,4 +52,6 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     fun setCategory(category: String) {
         preferences.setCategory(category)
     }
+
+    fun getCategory() = preferences.getCategory()
 }

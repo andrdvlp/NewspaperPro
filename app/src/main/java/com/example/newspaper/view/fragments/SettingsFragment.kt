@@ -32,9 +32,9 @@ class SettingsFragment : Fragment() {
         //Слушаем, какой у нас сейчас выбран вариант в настройках
         viewModel.categoryPropertyLifeData.observe(viewLifecycleOwner, Observer<String> {
             when (it) {
-                BUSINESS_CATEGORY -> binding.radioGroup.check(R.id.radio_business)
-                SPORTS_CATEGORY -> binding.radioGroup.check(R.id.radio_sports)
-                GENERAL_CATEGORY -> binding.radioGroup.check(R.id.radio_general)
+                USA_LANG -> binding.radioGroup.check(R.id.radio_usa)
+                UKR_LANG -> binding.radioGroup.check(R.id.radio_ukr)
+                RUS_LANG -> binding.radioGroup.check(R.id.radio_rus)
             }
         })
 
@@ -45,16 +45,16 @@ class SettingsFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .subscribe()
             when (checkedId) {
-                R.id.radio_business -> viewModel.putCategoryProperty(BUSINESS_CATEGORY)
-                R.id.radio_sports -> viewModel.putCategoryProperty(SPORTS_CATEGORY)
-                R.id.radio_general -> viewModel.putCategoryProperty(GENERAL_CATEGORY)
+                R.id.radio_usa -> viewModel.putCategoryProperty(USA_LANG)
+                R.id.radio_ukr -> viewModel.putCategoryProperty(UKR_LANG)
+                R.id.radio_rus -> viewModel.putCategoryProperty(RUS_LANG)
             }
         }
     }
 
     companion object {
-        private const val BUSINESS_CATEGORY = "business"
-        private const val SPORTS_CATEGORY = "sports"
-        private const val GENERAL_CATEGORY = "general"
+        private const val USA_LANG = "us"
+        private const val UKR_LANG = "ua"
+        private const val RUS_LANG = "ru"
     }
 }

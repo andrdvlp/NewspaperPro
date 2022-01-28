@@ -17,31 +17,31 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/black"
             android:layout_margin="8dp"
-            android:text="@string/radio_cat"/>
+            android:text="@string/radio_country"/>
         <RadioButton
-            android:id="@+id/radio_general"
+            android:id="@+id/radio_rus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textColor="@color/black"
-            android:text="General"/>
+            android:text="@string/radio_rus"/>
         <RadioButton
-            android:id="@+id/radio_business"
+            android:id="@+id/radio_usa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textColor="@color/black"
-            android:text="@string/radio_cat_business"/>
+            android:text="@string/radio_usa"/>
         <RadioButton
-            android:id="@+id/radio_sports"
+            android:id="@+id/radio_ukr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textColor="@color/black"
-            android:text="@string/radio_cat_sport"/>
+            android:text="@string/radio_ukr"/>
     </RadioGroup>
 
     <RadioGroup

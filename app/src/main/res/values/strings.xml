@@ -5,7 +5,11 @@
     <string name="radio_cat_business">Business</string>
     <string name="radio_cat_general">Business</string>
     <string name="radio_cat_sport">Sport</string>
+    <string name="radio_rus">Russia</string>
+    <string name="radio_usa">USA</string>
+    <string name="radio_ukr">Ukraine</string>
     <string name="radio_cat">Category</string>
+    <string name="radio_country">Country</string>
 
     <string name="radio_theme">Theme</string>
     <string name="radio_theme_light">Light</string>

@@ -59,10 +59,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initPullToRefresh()
         initRecyckler()
         initRecyclerCat()
         categoryRecyclerAdapter.addItems(getCatList())
-        initPullToRefresh()
 
         viewModel.newsListData
             .subscribeOn(Schedulers.io())

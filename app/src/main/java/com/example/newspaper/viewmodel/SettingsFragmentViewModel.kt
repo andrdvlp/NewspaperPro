@@ -21,7 +21,7 @@ class SettingsFragmentViewModel : ViewModel() {
 
     private fun getCategoryProperty() {
         //Кладем категорию в LiveData
-        categoryPropertyLifeData.value = interactor.getDefaultCategoryFromPreferences()
+        categoryPropertyLifeData.value = interactor.getDefaultLangFromPreferences()
     }
 
     fun deleteNews(): Completable {
@@ -33,7 +33,7 @@ class SettingsFragmentViewModel : ViewModel() {
 
     fun putCategoryProperty(category: String) {
         //Сохраняем в настройки
-        interactor.saveDefaultCategoryToPreferences(category)
+        interactor.saveDefaultLangToPreferences(category)
         //И сразу забираем, чтобы сохранить состояние в модели
         getCategoryProperty()
     }

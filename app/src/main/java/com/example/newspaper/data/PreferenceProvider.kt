@@ -13,29 +13,33 @@ class PreferenceProvider(context: Context) {
         //Логика для первого запуска приложения, чтобы положить наши настройки,
         //Сюда потом можно добавить и другие настройки
         if(preference.getBoolean(KEY_FIRST_LAUNCH, false)) {
-            preference.edit { putString(KEY_DEFAULT_CATEGORY, DEFAULT_CATEGORY) }
+            preference.edit { putString(KEY_DEFAULT_LANG, DEFAULT_LANG) }
             preference.edit { putBoolean(KEY_FIRST_LAUNCH, false) }
         }
         category = "General"
     }
     //Category prefs
     //Сохраняем категорию
-    fun saveDefaultCategory(category: String) {
-        preference.edit { putString(KEY_DEFAULT_CATEGORY, category) }
+    fun saveDefaultLang(language: String) {
+        preference.edit { putString(KEY_DEFAULT_LANG, language) }
     }
     //Забираем категорию
-    fun getDefaultCategory(): String {
-        return preference.getString(KEY_DEFAULT_CATEGORY, DEFAULT_CATEGORY) ?: DEFAULT_CATEGORY
+    fun getDefaultLang(): String {
+        return preference.getString(KEY_DEFAULT_LANG, DEFAULT_LANG) ?: DEFAULT_LANG
     }
 
     fun setCategory(categoryFromRecycler: String) {
         category = categoryFromRecycler
     }
 
+    fun getCategory() : String {
+        return category
+    }
+
     //Ключи для наших настроек, по ним мы их будем получать
     companion object {
         private const val KEY_FIRST_LAUNCH = "first_launch"
-        private const val KEY_DEFAULT_CATEGORY = "default_category"
-        private const val DEFAULT_CATEGORY = "general"
+        private const val KEY_DEFAULT_LANG = "default_category"
+        private const val DEFAULT_LANG = "general"
     }
 }
