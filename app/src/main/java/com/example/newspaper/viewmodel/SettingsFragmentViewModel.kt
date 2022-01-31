@@ -16,10 +16,10 @@ class SettingsFragmentViewModel : ViewModel() {
     init {
         App.instance.dagger.inject(this)
         //Получаем категорию при инициализации, чтобы у нас сразу подтягивалась категория
-        getCategoryProperty()
+        getLangProperty()
     }
 
-    private fun getCategoryProperty() {
+    private fun getLangProperty() {
         //Кладем категорию в LiveData
         categoryPropertyLifeData.value = interactor.getDefaultLangFromPreferences()
     }
@@ -31,10 +31,10 @@ class SettingsFragmentViewModel : ViewModel() {
         }
     }
 
-    fun putCategoryProperty(category: String) {
+    fun putLangProperty(language: String) {
         //Сохраняем в настройки
-        interactor.saveDefaultLangToPreferences(category)
+        interactor.saveDefaultLangToPreferences(language)
         //И сразу забираем, чтобы сохранить состояние в модели
-        getCategoryProperty()
+        getLangProperty()
     }
 }

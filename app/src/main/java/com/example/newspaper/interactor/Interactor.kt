@@ -25,6 +25,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
 
                 },
                 onNext = {
+                    repo.deleteAll()
                     repo.putToDb(it)
                 }
             )

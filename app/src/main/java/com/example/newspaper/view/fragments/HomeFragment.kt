@@ -19,6 +19,7 @@ import com.example.newspaper.view.rv_adapters.NewsListRecyclerAdapter
 import com.example.newspaper.view.rv_adapters.TopSpacingItemDecoration
 import com.example.newspaper.viewmodel.HomeFragmentViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class HomeFragment : Fragment() {
@@ -26,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var newsAdapter: NewsListRecyclerAdapter
     private lateinit var categoryRecyclerAdapter: CategoryRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var allNews: Observable<List<Article>>
     private val autoDisposable = AutoDisposable()
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
@@ -70,6 +72,21 @@ class HomeFragment : Fragment() {
             .subscribe { list ->
                 newsAdapter.addItems(list)
 //                newsDataBase = list
+            }
+            .addTo(autoDisposable)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.setCategoryProperty("General")
+        viewModel.getNews()
+
+        allNews = viewModel.newsListData
+
+        allNews.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { list ->
+                newsAdapter.addItems(list)
             }
             .addTo(autoDisposable)
     }

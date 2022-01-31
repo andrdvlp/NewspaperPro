@@ -45,9 +45,9 @@ class SettingsFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .subscribe()
             when (checkedId) {
-                R.id.radio_usa -> viewModel.putCategoryProperty(USA_LANG)
-                R.id.radio_ukr -> viewModel.putCategoryProperty(UKR_LANG)
-                R.id.radio_rus -> viewModel.putCategoryProperty(RUS_LANG)
+                R.id.radio_usa -> viewModel.putLangProperty(USA_LANG)
+                R.id.radio_ukr -> viewModel.putLangProperty(UKR_LANG)
+                R.id.radio_rus -> viewModel.putLangProperty(RUS_LANG)
             }
         }
     }

@@ -30,11 +30,6 @@ class HomeFragmentViewModel : ViewModel() {
         interactor.getNewsFromApi()
     }
 
-    interface ApiCallback {
-        fun onSuccess(article: List<Article>)
-        fun onFailure()
-    }
-
     fun setCategoryProperty(category: String) {
         //Сохраняем в настройки
         interactor.setCategory(category)
